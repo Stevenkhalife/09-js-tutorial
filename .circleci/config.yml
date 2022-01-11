@@ -6,4 +6,5 @@ jobs:
       - image: cimg/node:17.3.0
     steps:
       - checkout
-      - run: echo "working"
+      - run: |
+          echo "test"
