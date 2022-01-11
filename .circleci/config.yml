@@ -2,12 +2,6 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-      - image: cimg/node
     steps:
-      - run:
-          name: "Say hello"
-          command: |
-            npm test
-            npm prod:build
+      - run: npm test
 
