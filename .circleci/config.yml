@@ -8,5 +8,5 @@ jobs:
       - checkout
       - run: |
           npm install
-          npm run
+          npm test
           npm run prod:build
