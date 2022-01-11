@@ -9,4 +9,4 @@ jobs:
       - run: |
           npm install
           npm run
-          npm prod:build
+          npm run prod:build
