@@ -3,22 +3,33 @@
   "version": "2.4.5",
   "repository": "verekia/js-stack-boilerplate",
   "license": "MIT",
-  "browserslist": ["> 1%"],
+  "browserslist": [
+    "> 1%"
+  ],
+  "engines": {
+    "node": "7.x",
+    "yarn": "0.20.3"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
   "scripts": {
     "start": "npm run dev:start",
     "dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
     "dev:wds": "webpack-dev-server --progress",
-    "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
-    "prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
-    "prod:stop": "pm2 delete server",
+    "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p",
+    "prod:start": "heroku local",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
-    "test": "npm run lint && flow && jest --coverage",
+    "test": "npm run lint && flow && jest && codecov",
     "precommit": "npm test",
-    "prepush": "npm test && npm run prod:build"
+    "prepush": "npm test && npm run prod:build",
+    "heroku-postbuild": "yarn prod:build"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "bootstrap": "4.0.0-alpha.6",
+    "codecov": "^3.8.3",
     "compression": "^1.6.2",
     "express": "^4.15.0",
     "immutable": "^4.0.0-rc.1",
@@ -63,7 +74,6 @@
     "husky": "^0.13.2",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0",
-    "pm2": "^2.4.2",
     "redux-mock-store": "^1.2.2",
     "rimraf": "^2.6.1",
     "webpack": "^2.2.1",

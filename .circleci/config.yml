@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@3.2.2
+  
+jobs:
+  build:
+    docker:
+      - image: cimg/node:17.3.0
+    steps:
+      - checkout
+      - run: |
+          npm install
+          npm test
+          npm run prod:build
